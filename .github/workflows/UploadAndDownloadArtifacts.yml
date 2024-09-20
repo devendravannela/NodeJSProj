@@ -1,7 +1,7 @@
 name: Upload Download Artifacts
 on: [push, workflow_dispatch]
 jobs:
-  test:
+  Build:
     runs-on: ubuntu-latest
     steps:
       - name: Get code
@@ -21,3 +21,12 @@ jobs:
         with:
           name: my-artifact
           path: dist
+  Deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: my-artifact
+      - name: List of Artifacts
+        run: ls
