@@ -1,0 +1,17 @@
+name: Deploy Project
+on: [push, workflow_dispatch]
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Run tests
+        run: exit 1  # Simulate a test failure
+        continue-on-error: true
+
+      - name: Run this if the tests failed
+        if: failure()  # This step runs if the previous step failed
+        run: echo "The tests failed, but we are still proceeding."
+
+      - name: Run this if the tests passed
+        if: success()  # This step runs only if the previous step succeeded
+        run: echo "The tests passed."
