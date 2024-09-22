@@ -18,4 +18,4 @@ jobs:
       - name: Run tests
         run: |
             echo '${{ secrets.DBPASSWORD }}'
-            echo $DBPASSWORD
+            echo '$DBPASSWORD'
